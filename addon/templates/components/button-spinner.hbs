@@ -1,0 +1,11 @@
+<div class="fixed-width" style={{style}}>
+    {{#if isSpinning}}
+        <span class="{{loadingClass}} active"></span>
+    {{else if successShown}}
+        <div class="success loading-btn-flip-in">
+            {{fa-icon successIcon class="action-button-icon"}}
+        </div>
+    {{else}}
+        {{button-basic icon=icon label=label tooltip=tooltip}}
+    {{/if}}
+</div>

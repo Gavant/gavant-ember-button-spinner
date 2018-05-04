@@ -1,3 +1,76 @@
 <h2 id="title">Welcome to Ember</h2>
 
+<p>
+        {{#button-spinner
+            clicked=(action "clickWithPromise")
+            isSpinning=linkedIsSpinning
+            successShown=linkedSuccessShown
+            errorShown=linkedErrorShown
+            class="btn-lg btn-success"
+            icon="user"
+        }}
+            With Promise (linked)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithPromise") isSpinning=linkedIsSpinning successShown=linkedSuccessShown errorShown=linkedErrorShown class="btn-lg btn-success"}}
+            With Promise (linked)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithRejectedPromise") class="btn-lg btn-danger"}}
+            With Rejected Promise
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithPromise") showSuccess=false class="btn-success"}}
+            With Promise (no success)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithRejectedPromise") showError=false class="btn-danger"}}
+            With Rejected Promise (no error)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithoutPromise") class="btn-lg btn-default"}}
+            Without Promise (lg)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithoutPromise") class="btn-default"}}
+            Without Promise (default)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithInstantRejectedPromise") class="btn-default"}}
+            Rejected Promise (default)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithoutPromise") class="btn-sm btn-default"}}
+            Without Promise (sm)
+        {{/button-spinner}}
+    </p>
+    <p>
+        {{#button-spinner clicked=(action "clickWithoutPromise") class="btn-xs btn-default"}}
+            Without Promise (xs)
+        {{/button-spinner}}
+    </p>
+    <div class="row">
+        <div class="col-xs-6">
+            <p>
+                {{#button-spinner clicked=(action "clickWithPromise") class="btn-primary btn-block"}}
+                    Block Button
+                {{/button-spinner}}
+            </p>
+        </div>
+        <div class="col-xs-6">
+            <p>
+                {{#button-spinner clicked=(action "clickWithPromise") class="btn-primary btn-block"}}
+                    Block Button
+                {{/button-spinner}}
+            </p>
+        </div>
+    </div>
 {{outlet}}
