@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
-import { later, bind } from '@ember/runloop';
+import { later } from '@ember/runloop';
 import RSVP from 'rsvp';
 import { reject } from 'rsvp';
+
 export default Controller.extend({
     onSuccessAnimateIn() {
         //execute some logic here that occurs after the success state is shown
@@ -16,7 +17,7 @@ export default Controller.extend({
         clickWithPromise() {
             return new RSVP.Promise((resolve) => {
                 later(this, () => {
-                    resolve(bind(this, 'onSuccessAnimateIn'));
+                    resolve(this.onSuccessAnimateIn());
                 }, 2000);
             });
         },
@@ -24,7 +25,7 @@ export default Controller.extend({
         clickWithRejectedPromise() {
             return new RSVP.Promise((resolve, reject) => {
                 later(this, () => {
-                    reject(bind(this, 'onErrorAnimateIn'));
+                    reject(this.onErrorAnimateIn());
                 }, 2000);
             });
         },

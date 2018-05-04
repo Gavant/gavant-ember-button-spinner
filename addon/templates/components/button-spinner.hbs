@@ -6,6 +6,24 @@
             {{fa-icon successIcon class="action-button-icon"}}
         </div>
     {{else}}
-        {{button-basic icon=icon label=label tooltip=tooltip}}
+        {{#if hasIcon}}
+            {{fa-icon icon class="action-button-icon"}}
+        {{/if}}
+        {{#if (not iconBtn)}}
+            {{#if label}}
+                <span class="action-button-lbl">{{label}}</span>
+            {{/if}}
+            {{yield}}
+        {{/if}}
+        {{#if tooltip}}
+            {{#attach-tooltip
+                animation=tooltip-animation
+                arrow=tooltip-arrow
+                hideOn=tooltip-hide-on
+                registerAPI=(action "onTooltipApiChange")
+            }}
+                {{tooltip}}
+            {{/attach-tooltip}}
+        {{/if}}
     {{/if}}
 </div>
