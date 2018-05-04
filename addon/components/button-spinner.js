@@ -79,7 +79,7 @@ export default BasicButton.extend({
 
             cancel(get(this, 'showResultTimer'));
             //coerce the returned value into an RSVP promise object to ensure it has a .finally() method
-            const resolvedPromise = RSVP.resolve(tryInvoke(this, 'clicked', [event]));
+            const resolvedPromise = RSVP.resolve(tryInvoke(this, 'action', [event]));
 
             resolvedPromise.then((callback) => {
                 this.showResultState('success', callback);
