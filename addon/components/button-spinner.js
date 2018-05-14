@@ -15,7 +15,7 @@ export default BasicButton.extend({
     classNameBindings: ['isSpinning', 'successShown', 'errorShown'],
     loadingClass: 'loading-animation',
     'button-type': 'submit',
-    successIcon: 'fa fa-check-circle',
+    successIcon: 'check-circle',
     targetObject: or('parentView.controller', 'parentView'),
     isSpinning: false,
     showSuccess: true,
