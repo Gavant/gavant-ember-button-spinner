@@ -1,7 +1,7 @@
 gavant-ember-button-spinner
 ==============================================================================
 
-[Short description of the addon.]
+A button component that accepts an action that returns a promise, and displays a spinner while waiting for the  promise to resolve. Also optionally shows a "success" icon if the promise resolves, and "shakes" if the promise rejects.
 
 Installation
 ------------------------------------------------------------------------------
@@ -9,7 +9,12 @@ Installation
 ```
 ember install gavant-ember-button-spinner
 ```
+To use the addon styles, you must use SASS:
+```
+ember install ember-cli-sass
+```
 
+(Upon addon installation, an import statement will be added to your `app.scss`)
 
 Usage
 ------------------------------------------------------------------------------

@@ -1,0 +1,79 @@
+@import "gavant-ember-button-spinner/variables";
+@import "gavant-ember-button-spinner/animations";
+
+.action-button-spinner {
+    position: relative;
+
+    &-ct {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    &-loading {
+        display: inline-block;
+        height: 0;
+        opacity: 0;
+        position: relative;
+        transition: opacity 0.25s, width 0.25s;
+        border-color: $button-spinner-loading-color2 $button-spinner-loading-color1 $button-spinner-loading-color1;
+        border-radius: 100%;
+        border-style: solid;
+        border-width: $button-spinner-loading-border-width;
+        margin: 0;
+        width: 0;
+
+        &.active {
+            height: $button-spinner-loading-size;
+            width: $button-spinner-loading-size;
+            opacity: 1;
+            vertical-align: middle;
+            animation: buttonSpinnerRotation .6s infinite linear;
+
+            &.lg {
+                height: $button-spinner-loading-size-lg;
+                width: $button-spinner-loading-size-lg;
+                border-width: $button-spinner-loading-border-width-lg;
+            }
+        }
+    }
+
+    &-success {
+        font-size: $button-spinner-success-font-size;
+    }
+
+    &-error {
+        animation-duration: 0.3s;
+        animation-fill-mode: both;
+        animation-name: buttonSpinnerShake;
+    }
+
+    &-flip-in {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: buttonSpinnerFlipIn;
+        backface-visibility: visible !important;
+    }
+
+    &.btn-sm {
+        .action-button-spinner-success {
+            font-size: $button-spinner-success-font-size-sm;
+        }
+
+        .action-button-spinner-loading.active {
+            width: 10px;
+            height: 10px;
+        }
+    }
+
+    &.btn-lg {
+        .action-button-spinner-success {
+            font-size: $button-spinner-success-font-size-lg;
+        }
+    }
+}

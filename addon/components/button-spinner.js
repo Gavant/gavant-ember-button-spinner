@@ -12,11 +12,12 @@ export default BasicButton.extend({
     tagName: 'button',
     attributeBindings: ['button-type:type'],
     classNames: ['action-button-spinner'],
-    classNameBindings: ['isSpinning', 'successShown', 'errorShown'],
-    loadingClass: 'loading-animation',
+    classNameBindings: ['isSpinning', 'successShown', 'errorShown:action-button-spinner-error'],
+    loadingClass: 'action-button-spinner-loading',
+    successClass: 'action-button-spinner-success',
+    successAnimationClass: 'action-button-spinner-flip-in',
     'button-type': 'submit',
     successIcon: 'check-circle',
-    targetObject: or('parentView.controller', 'parentView'),
     isSpinning: false,
     showSuccess: true,
     showError: true,
@@ -26,6 +27,8 @@ export default BasicButton.extend({
     successAnimateInDuration: 1000,
     errorStateDuration: 1000,
     errorAnimateInDuration: 1000,
+
+    isContentReplaced: or('isSpinning', 'successShown'),
 
     style: computed('width', 'isSpinning', 'successShown', 'errorShown', function() {
         //only set a hard width when the spinner or result states are shown so that the button naturally determines
@@ -71,7 +74,7 @@ export default BasicButton.extend({
         let isSpinning = get(this, 'isSpinning');
         if (!isSpinning) {
             setProperties(this, {
-                width: this.$('.fixed-width').width(),
+                width: this.$('.action-button-fixed-width').width(),
                 isSpinning: true,
                 successShown: false,
                 errorShown: false
