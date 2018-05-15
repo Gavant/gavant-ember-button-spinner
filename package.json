@@ -1,6 +1,6 @@
 {
   "name": "gavant-ember-button-spinner",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
@@ -11,7 +11,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/Gavant/gavant-ember-button-spinner",
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app blueprints config lib server test-support tests",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
-    "gavant-ember-button-basic": "^0.0.5",
+    "gavant-ember-button-basic": "^0.0.6",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-font-awesome": "4.0.0-rc.3"
   },

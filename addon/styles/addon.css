@@ -1,4 +1,4 @@
-@-webkit-keyframes loadingBtnFlipIn {
+@-webkit-keyframes buttonSpinnerFlipIn {
   from {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -48,7 +48,7 @@
   }
 }
 
-@keyframes loadingBtnFlipIn {
+@keyframes buttonSpinnerFlipIn {
   from {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -98,49 +98,69 @@
   }
 }
 
-.loading-btn-flip-in {
+@-webkit-keyframes buttonSpinnerShake {
+    0%,100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    25%,75% {
+        -webkit-transform: translate3d(-5px, 0, 0);
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(5px, 0, 0);
+        transform: translate3d(5px, 0, 0);
+    }
+}
+
+@keyframes buttonSpinnerShake {
+    0%,100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    25%,75% {
+        -webkit-transform: translate3d(-5px, 0, 0);
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(5px, 0, 0);
+        transform: translate3d(5px, 0, 0);
+    }
+}
+
+@keyframes buttonSpinnerRotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@-webkit-keyframes buttonSpinnerRotation {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.action-button-flip-in {
   -webkit-animation-duration: 3s;
   animation-duration: 3s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
-  -webkit-animation-name: loadingBtnFlipIn;
-  animation-name: loadingBtnFlipIn;
-}
-
-@-webkit-keyframes loadingBtnError {
-    0%,100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-
-    25%,75% {
-        -webkit-transform: translate3d(-5px, 0, 0);
-        transform: translate3d(-5px, 0, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(5px, 0, 0);
-        transform: translate3d(5px, 0, 0);
-    }
-}
-
-@keyframes loadingBtnError {
-    0%,100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-
-    25%,75% {
-        -webkit-transform: translate3d(-5px, 0, 0);
-        transform: translate3d(-5px, 0, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(5px, 0, 0);
-        transform: translate3d(5px, 0, 0);
-    }
+  -webkit-animation-name: buttonSpinnerFlipIn;
+  animation-name: buttonSpinnerFlipIn;
 }
 
 .error-shown {
@@ -148,32 +168,42 @@
   animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  -webkit-animation-name: loadingBtnError;
-  animation-name: loadingBtnError;
+  -webkit-animation-name: buttonSpinnerShake;
+  animation-name: buttonSpinnerShake;
 }
 
-.action-button-spinner .success {
-  margin-top: -7px;
-  margin-bottom: -7px;
-  font-size: 24px;
+.action-button-spinner {
+    position: relative;
 }
 
-.action-button-spinner.btn-lg .success {
-  font-size: 26px;
-  margin-top: -5px;
-  margin-bottom: -5px;
+.action-button-spinner-ct {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
-.action-button-spinner.btn-sm .success {
-  font-size: 19px;
-  margin-top: -5px;
-  margin-bottom: -5px;
+.action-button-spinner .action-button-success {
+    font-size: 24px;
 }
 
-.action-button-spinner.btn-xs .success {
-  font-size: 14px;
-  margin-top: -1px;
-  margin-bottom: -2px;
+.action-button-spinner.btn-lg .action-button-success {
+    font-size: 26px;
+}
+
+.action-button-spinner.btn-sm .action-button-success {
+    font-size: 19px;
+}
+
+.action-button-spinner.btn-xs .action-button-success {
+    font-size: 14px;
 }
 
 .loading-animation {
@@ -182,7 +212,7 @@
     opacity: 0;
     position: relative;
     transition: opacity 0.25s, width 0.25s;
-    border-color: #FFF !default #000 !default #000 !default;
+    border-color: transparent rgba(0, 0, 0, 0.6) rgba(0, 0, 0, 0.6);
     border-radius: 100%;
     border-style: solid;
     border-width: 2px;
@@ -194,19 +224,15 @@
     margin: 0;
 }
 
-
-button[disabled] .action-button-spinner,
-button[disabled]:hover .action-button-spinner {
-    border-color: #888 #ccc #ccc;
-}
-
 .action-button-spinner .loading-animation.active {
-    animation: rotation .6s infinite linear;
     height: 15px;
+    width: 15px;
     opacity: 1;
     vertical-align: middle;
-    width: 15px;
+    -webkit-animation: buttonSpinnerShake .6s infinite linear;
+    animation: buttonSpinnerRotation .6s infinite linear;
 }
+
 .action-button-spinner .loading-animation.active.lg {
     height: 50px;
     width: 50px;
@@ -214,22 +240,6 @@ button[disabled]:hover .action-button-spinner {
 }
 
 .btn-sm .loading-animation.active {
-    margin: 0;
     width: 10px;
     height: 10px;
-}
-
-.loading-animation.active.dark,
-.loading-animation.active.btn-secondary,
-.loading-animation.active.btn-link {
-    border-color: #FFF !default #000 !default #000 !default;
-}
-
-@keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(359deg);
-    }
 }

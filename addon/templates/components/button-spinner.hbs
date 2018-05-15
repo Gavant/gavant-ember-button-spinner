@@ -1,9 +1,14 @@
-<div class="fixed-width" style={{style}}>
-    {{#if isSpinning}}
-        <span class="{{loadingClass}} active"></span>
-    {{else if successShown}}
-        <div class="success loading-btn-flip-in">
-            {{fa-icon successIcon class="action-button-icon"}}
+<div class="action-button-fixed-width" style={{style}}>
+    {{#if isContentReplaced}}
+        &nbsp; {{!-- maintain the button's normal height --}}
+        <div class="action-button-spinner-ct">
+            {{#if successShown}}
+                <div class="{{successClass}} {{successAnimationClass}}">
+                    {{fa-icon successIcon class="action-button-icon"}}
+                </div>
+            {{else}}
+                <span class="{{loadingClass}} active"></span>
+            {{/if}}
         </div>
     {{else}}
         {{#if hasIcon}}
