@@ -12,6 +12,9 @@
         </div>
     {{else}}
         {{#if hasIcon}}
+            {{!-- we need to explicity reference this.propName here --}}
+            {{!-- to avoid a naming collision with a 3rd party addon --}}
+            {{!-- that has a helper named "icon" --}}
             {{fa-icon this.icon class="action-button-icon"}}
         {{/if}}
         {{#if (not iconBtn)}}
