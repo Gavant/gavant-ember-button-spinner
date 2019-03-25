@@ -74,7 +74,7 @@ export default BasicButton.extend({
         let isSpinning = get(this, 'isSpinning');
         if (!isSpinning) {
             setProperties(this, {
-                width: this.$('.action-button-fixed-width').width(),
+                width: this.element.querySelector('.action-button-fixed-width').offsetWidth,
                 isSpinning: true,
                 successShown: false,
                 errorShown: false
