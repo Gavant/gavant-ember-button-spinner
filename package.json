@@ -1,5 +1,5 @@
 {
-  "name": "gavant-ember-button-spinner",
+  "name": "@gavant/ember-button-spinner",
   "version": "0.1.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
@@ -23,7 +23,7 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-font-awesome": "4.0.0-rc.3",
-    "gavant-ember-button-basic": "^0.0.8"
+    "@gavant/ember-button-basic": "^0.0.8"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

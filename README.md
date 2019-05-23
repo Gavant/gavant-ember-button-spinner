@@ -7,7 +7,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install gavant-ember-button-spinner
+ember install @gavant/ember-button-spinner
 ```
 To use the addon styles, you must use SASS:
 ```
