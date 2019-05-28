@@ -4080,10 +4080,10 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
-gavant-ember-button-basic@^0.0.8:
+"@gavant/ember-button-basic@^0.0.8":
   version "0.0.8"
-  resolved "https://registry.yarnpkg.com/gavant-ember-button-basic/-/gavant-ember-button-basic-0.0.8.tgz#e31d1082b2e5710202c7963a304c0123727843cc"
-  integrity sha512-NMO3SNcks2+zXtcVg4ej+6fyQirM/wkuQGMBsRbf1Npg7noVEfd2f26Fku1HEgPKkLEFM2rTG2To/kEeqTv0Mg==
+  resolved "https://registry.yarnpkg.com/@gavant/ember-button-basic/-/ember-button-basic-0.0.8.tgz#9218c2c072dfd26b63aa11e04b8eab35d5cd061d"
+  integrity sha512-DiuHevIHzUPgqCbCtAZyJ2oAYJQasevTUX2seoSPLRbKNwsTT8YPFJP7mzvGqCKnt41jTc2Q15Kw0L2F/GQEOQ==
   dependencies:
     ember-attacher "^0.13.5"
     ember-cli-babel "^6.6.0"

@@ -1,1 +1,1 @@
-export { default } from 'gavant-ember-button-spinner/components/button-spinner';
+export { default } from '@gavant/ember-button-spinner/components/button-spinner';
