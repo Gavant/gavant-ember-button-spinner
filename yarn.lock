@@ -160,6 +160,17 @@
     ember-cli-babel "^6.12.0"
     ember-cli-htmlbars-inline-precompile "^1.0.0"
 
+"@gavant/ember-button-basic@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@gavant/ember-button-basic/-/ember-button-basic-0.0.9.tgz#fc566da640a80d3f6d99fb9806b330c247ce34c4"
+  integrity sha512-UFgfJpKNdLkQ/Q7bPX61QNUewYwMlavn4ycOcSzNk4jbR+ZGju38OFftyaY3wOQGeClhpz5maxl7UNmW50H/Fg==
+  dependencies:
+    ember-attacher "^0.13.5"
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-font-awesome "4.0.0-rc.3"
+    ember-truth-helpers "^2.0.0"
+
 "@glimmer/compiler@^0.27.0":
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.27.0.tgz#b24042752a53171d5cb3d9a95a29dfc0f314ed2c"
@@ -4079,17 +4090,6 @@ gauge@~2.7.3:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
-
-"@gavant/ember-button-basic@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@gavant/ember-button-basic/-/ember-button-basic-0.0.8.tgz#9218c2c072dfd26b63aa11e04b8eab35d5cd061d"
-  integrity sha512-DiuHevIHzUPgqCbCtAZyJ2oAYJQasevTUX2seoSPLRbKNwsTT8YPFJP7mzvGqCKnt41jTc2Q15Kw0L2F/GQEOQ==
-  dependencies:
-    ember-attacher "^0.13.5"
-    ember-cli-babel "^6.6.0"
-    ember-cli-htmlbars "^2.0.1"
-    ember-font-awesome "4.0.0-rc.3"
-    ember-truth-helpers "^2.0.0"
 
 gaze@^1.0.0:
   version "1.1.2"

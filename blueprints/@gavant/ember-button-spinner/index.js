@@ -12,7 +12,7 @@ module.exports = {
     },
 
     afterInstall() {
-        let importStatement = '\n@import "@gavant/ember-button-spinner";\n';
+        let importStatement = '\n@import "gavant-ember-button-spinner";\n';
 
         let stylePath = path.join('app', 'styles');
         let file = path.join(stylePath, 'app.scss');

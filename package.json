@@ -20,7 +20,7 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "@gavant/ember-button-basic": "^0.0.8",
+    "@gavant/ember-button-basic": "0.0.9",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-font-awesome": "4.0.0-rc.3"
