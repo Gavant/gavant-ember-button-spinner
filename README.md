@@ -1,7 +1,16 @@
-gavant-ember-button-spinner
+@gavant/ember-button-spinner
 ==============================================================================
 
-A button component that accepts an action that returns a promise, and displays a spinner while waiting for the  promise to resolve. Also optionally shows a "success" icon if the promise resolves, and "shakes" if the promise rejects.
+A button component built on [@gavant/ember-button-basic](https://github.com/Gavant/gavant-ember-button-basic) that accepts an action that returns a promise, and displays a spinner while waiting for the promise to resolve. Also optionally shows a "success" icon if the promise resolves, and "shakes" if the promise rejects.
+
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.12 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
+
 
 Installation
 ------------------------------------------------------------------------------
@@ -16,38 +25,22 @@ ember install ember-cli-sass
 
 (Upon addon installation, an import statement will be added to your `app.scss`)
 
+**NOTE:** This addon uses FontAwesome 5 ([@fortawesome/ember-fontawesome](https://github.com/FortAwesome/ember-fontawesome)) for icon support. However it does NOT install any icon set packages. You must install these separately, following the addon's installation guide, e.g.
+```
+yarn add --dev @fortawesome/free-solid-svg-icons
+```
+
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+@TODO [Longer description of how to use the addon in apps.]
 
 
 Contributing
 ------------------------------------------------------------------------------
 
-### Installation
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
-* `git clone <repository-url>`
-* `cd gavant-ember-button-spinner`
-* `npm install`
-
-### Linting
-
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Running tests
-
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `ember try:each` – Runs the test suite against multiple Ember versions
-
-### Running the dummy application
-
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 License
 ------------------------------------------------------------------------------
