@@ -1,37 +1,50 @@
-<div class="action-button-fixed-width" style={{style}}>
-    {{#if isContentReplaced}}
-        &nbsp; {{!-- maintain the button's normal height --}}
-        <div class="action-button-spinner-ct">
-            {{#if successShown}}
-                <div class="{{successClass}} {{successAnimationClass}}">
-                    {{fa-icon successIcon class="action-button-icon"}}
+<Button
+    class="action-button-spinner
+        {{~if this.isSpinning " action-button-spinner-is-spinning"}}
+        {{~if this.successShown " action-button-spinner-success-shown"}}
+        {{~if this.errorShown " action-button-spinner-error"}}"
+    @action={{this.onClick}}
+    @preventDefault={{this.preventDefault}}
+    @buttonType={{this.buttonType}}
+    @type={{@type}}
+    @size={{@size}}
+    @blockLayout={{@blockLayout}}
+    @wide={{@wide}}
+    @outline={{@outline}}
+    @rounded={{@rounded}}
+    @circle={{@circle}}
+    @iconOnly={{@iconOnly}}
+    @active={{@active}}
+    @disabled={{@disabled}}
+    @label={{@label}}
+    @icon={{@icon}}
+    @iconPrefix={{@iconPrefix}}
+    @iconClass={{@iconClass}}
+    @iconSize={{@iconSize}}
+    @iconFlip={{@iconFlip}}
+    @iconRotation={{@iconRotation}}
+    @iconSpin={{@iconSpin}}
+    @iconBorder={{@iconBorder}}
+    @iconFixedWidth={{@iconFixedWidth}}
+    @stopPropagation={{@stopPropagation}}
+    ...attributes
+>
+    <span class="action-button-spinner-yielded-content">
+        {{yield}}
+    </span>
+    {{#if this.isContentReplaced}}
+        <span class="action-button-spinner-ct">
+            {{#if this.successShown}}
+                <div class="{{this.successClass}} {{this.successAnimationClass}}">
+                    <FaIcon
+                        @icon={{this.successIcon}}
+                        @prefix={{@iconPrefix}}
+                        class="action-button-icon {{@successIconClass}}"
+                    />
                 </div>
             {{else}}
-                <span class="{{loadingClass}} active"></span>
+                <span class="{{this.loadingClass}} active"></span>
             {{/if}}
-        </div>
-    {{else}}
-        {{#if hasIcon}}
-            {{!-- we need to explicity reference this.propName here --}}
-            {{!-- to avoid a naming collision with a 3rd party addon --}}
-            {{!-- that has a helper named "icon" --}}
-            {{fa-icon this.icon class="action-button-icon"}}
-        {{/if}}
-        {{#if (not iconBtn)}}
-            {{#if label}}
-                <span class="action-button-lbl">{{label}}</span>
-            {{/if}}
-            {{yield}}
-        {{/if}}
-        {{#if tooltip}}
-            {{#attach-tooltip
-                animation=tooltip-animation
-                arrow=tooltip-arrow
-                hideOn=tooltip-hide-on
-                registerAPI=(action "onTooltipApiChange")
-            }}
-                {{tooltip}}
-            {{/attach-tooltip}}
-        {{/if}}
+        </span>
     {{/if}}
-</div>
+</Button>

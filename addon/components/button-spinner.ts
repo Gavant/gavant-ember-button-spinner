@@ -1,100 +1,147 @@
-import { get, set, setProperties, computed } from '@ember/object';
-import { tryInvoke } from '@ember/utils';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { isNone, typeOf } from '@ember/utils';
 import { cancel, later } from '@ember/runloop';
-import { htmlSafe, capitalize } from '@ember/string';
-import { or } from '@ember/object/computed';
-import RSVP from 'rsvp';
-import BasicButton from '@gavant/ember-button-basic/components/button-basic';
+import { EmberRunTimer } from '@ember/runloop/types';
+import { resolve } from 'rsvp';
+import { ButtonArgs } from '@gavant/ember-button-basic/components/button';
 
-export default BasicButton.extend({
-    tagName: 'button',
-    attributeBindings: ['button-type:type'],
-    classNames: ['action-button-spinner'],
-    classNameBindings: ['isSpinning', 'successShown', 'errorShown:action-button-spinner-error'],
-    loadingClass: 'action-button-spinner-loading',
-    successClass: 'action-button-spinner-success',
-    successAnimationClass: 'action-button-spinner-flip-in',
-    'button-type': 'submit',
-    successIcon: 'check-circle',
-    isSpinning: false,
-    showSuccess: true,
-    showError: true,
-    successShown: false,
-    errorShown: false,
-    successStateDuration: 3000,
-    successAnimateInDuration: 1000,
-    errorStateDuration: 1000,
-    errorAnimateInDuration: 1000,
+export interface ButtonSpinnerArgs extends ButtonArgs {
+    isSpinning?: boolean;
+    showSuccess?: boolean;
+    showError?: boolean;
+    loadingClass?: string;
+    successClass?: string;
+    successAnimationClass?: string;
+    successIcon?: string;
+    successIconClass?: string;
+    action?: (event: Event) => Promise<any>;
+}
 
-    isContentReplaced: or('isSpinning', 'successShown'),
+export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
+    @tracked isSpinning: boolean = false;
+    @tracked successShown: boolean = false;
+    @tracked errorShown: boolean = false;
 
-    style: computed('width', 'isSpinning', 'successShown', 'errorShown', function() {
-        //only set a hard width when the spinner or result states are shown so that the button naturally determines
-        //its width based on its content/container width when in the non spinning state
-        //this is mainly is for block-level buttons (.btn-block), whose width can dynamically change in RWD situations
-        const width = get(this, 'width');
-        const style = get(this, 'isSpinning') || get(this, 'successShown') || get(this, 'errorShown') ? `width:${width}px;` : "";
+    successStateDuration: number = 3000;
+    successAnimateInDuration: number = 1000;
+    errorStateDuration: number = 1000;
+    errorAnimateInDuration: number = 1000;
+    showResultTimer: EmberRunTimer | null = null;
 
-        return htmlSafe(style);
-    }),
+    get buttonType() {
+        //default the button `type` attribute to 'submit', as spinner buttons
+        //are usually used for form submission
+        return this.args.buttonType || 'submit';
+    }
 
-    willDestroyElement() {
-        this._super(...arguments);
-        setProperties(this, {
-            isSpinning: false,
-            successShown: false,
-            errorShown: false
-        });
-    },
+    get preventDefault() {
+        //default the button action to prevent the default behavior, as spinner buttons
+        //are usually used for form submission
+        return !isNone(this.args.preventDefault) ? this.args.preventDefault : true;
+    }
 
-    showResultState(type, animateInCallback) {
-        if(!this.isDestroyed && get(this, `show${capitalize(type)}`)) {
-            set(this, `${type}Shown`, true);
+    get showSuccess() {
+        return !isNone(this.args.showSuccess) ? this.args.showSuccess : true;
+    }
 
-            const showResultTimer = later(this, () => {
-                if(!this.isDestroyed) {
-                    set(this, `${type}Shown`, false);
+    get showError() {
+        return !isNone(this.args.showError) ? this.args.showError : true;
+    }
+
+    get loadingClass() {
+        return this.args.loadingClass || 'action-button-spinner-loading';
+    }
+
+    get successClass() {
+        return this.args.successClass || 'action-button-spinner-success';
+    }
+
+    get successAnimationClass() {
+        return this.args.successAnimationClass || 'action-button-spinner-flip-in';
+    }
+
+    get successIcon() {
+        return this.args.successIcon || 'check-circle';
+    }
+
+    get isContentReplaced() {
+        return this.isSpinning || this.args.isSpinning || this.successShown;
+    }
+
+    /**
+     * Handles button click events
+     * @param {Event} event
+     */
+    @action
+    async onClick(event: Event) {
+        if (!this.isSpinning) {
+            this.isSpinning = true;
+            this.successShown = false;
+            this.errorShown = false;
+
+            if(this.showResultTimer) {
+                cancel(this.showResultTimer);
+            }
+
+            //coerce the returned value into a Promise to ensure it has a `finally` block
+            try {
+                if(this.args.action) {
+                    const result = await resolve(this.args.action(event));
+                    this.showSuccessState(result);
                 }
-            }, get(this, `${type}StateDuration`));
-
-            set(this, 'showResultTimer', showResultTimer);
-
-            //if the returned promise resolves to a function, invoke it when a result state finishes animating in
-            //e.g. so the parent controller can transition once the success state is shown
-            if(typeof animateInCallback === 'function') {
-                later(this, animateInCallback, get(this, `${type}AnimateInDuration`));
+            } catch(error) {
+                this.showErrorState(error);
+            } finally {
+                //TODO need to worry about component lifecycle/being destroyed?
+                this.isSpinning = false;
             }
         }
-    },
+    }
 
-    click(event) {
-        event.preventDefault();
-        let isSpinning = get(this, 'isSpinning');
-        if (!isSpinning) {
-            setProperties(this, {
-                width: this.element.querySelector('.action-button-fixed-width').offsetWidth,
-                isSpinning: true,
-                successShown: false,
-                errorShown: false
-            });
+    /**
+     * Shows the success animation/icon and invokes a callback function if the given action resolves with one
+     * @param {any} resolvedValue the given action can resolve with literally anything, so we allow it here
+     */
+    showSuccessState(resolvedValue?: any) {
+        //TODO need to worry about lifecycle/component being destroyed?
+        if(this.showSuccess) {
+            this.successShown = true;
 
-            cancel(get(this, 'showResultTimer'));
-            //coerce the returned value into an RSVP promise object to ensure it has a .finally() method
-            const resolvedPromise = RSVP.resolve(tryInvoke(this, 'action', [event]));
+            this.showResultTimer = later(this, () => {
+                //TODO need to worry about lifecycle/component being destroyed?
+                this.successShown = false;
+            }, this.successStateDuration);
 
-            resolvedPromise.then((callback) => {
-                this.showResultState('success', callback);
-            });
-
-            resolvedPromise.catch((callback) => {
-                this.showResultState('error', callback);
-            });
-
-            resolvedPromise.finally(() => {
-                if(!get(this, 'isDestroyed')) {
-                    set(this, 'isSpinning', false);
-                }
-            });
+            //if the returned promise resolves to a function, invoke it when a result state finishes animating in
+            //e.g. so the parent controller can do something custom once the success state is shown
+            if(typeOf(resolvedValue) === 'function') {
+                later(this, resolvedValue, this.successAnimateInDuration);
+            }
         }
     }
-});
+
+    /**
+     * Shows the error animation and invokes a callback function if the given action resolves with one
+     * @param {any} rejectedValue the given action can reject with literally anything, so we allow it here
+     */
+    showErrorState(rejectedValue?: any) {
+        //TODO need to worry about lifecycle/component being destroyed?
+        if(this.showError) {
+            this.errorShown = true;
+
+            this.showResultTimer = later(this, () => {
+                //TODO need to worry about lifecycle/component being destroyed?
+                this.errorShown = false;
+            }, this.errorStateDuration);
+
+            //if the returned promise rejected to a function, invoke it when a result state finishes animating in
+            //e.g. so the parent controller can do something custom when the error state is shown
+            if(typeOf(rejectedValue) === 'function') {
+                later(this, rejectedValue, this.errorAnimateInDuration);
+            }
+        }
+    }
+}
+

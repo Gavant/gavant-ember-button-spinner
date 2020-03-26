@@ -7,153 +7,139 @@
     <div class="row">
         <div class="col">
             <p>
-                {{button-basic icon="user" label="Icon Test"}}
+                <Button @icon="user" @label="Icon Test" />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    isSpinning=linkedIsSpinning
-                    successShown=linkedSuccessShown
-                    errorShown=linkedErrorShown
-                    size="lg"
-                    type="primary"
-                    icon="user"
-                }}
+                <ButtonSpinner
+                    @action={{this.clickWithLinkedSpinning}}
+                    @isSpinning={{this.linkedIsSpinning}}
+                    @size="lg"
+                    @type="primary"
+                    @icon="user"
+                >
                     With Promise (linked)
-                {{/button-spinner}}
+                </ButtonSpinner>
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    isSpinning=linkedIsSpinning
-                    successShown=linkedSuccessShown
-                    errorShown=linkedErrorShown
-                    type="success"
-                    outline=true
-                }}
-                    With Promise (linked)
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithLinkedSpinning}}
+                    @isSpinning={{this.linkedIsSpinning}}
+                    @type="success"
+                    @outline={{true}}
+                    @label="With Promise (linked"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    type="success"
-                }}
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @type="success"
+                >
                     With Promise (success)
-                {{/button-spinner}}
+                </ButtonSpinner>
+            </p>
+
+            <p>
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @type="info"
+                    @label="With Promise (info)"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    type="info"
-                }}
-                    With Promise (info)
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @type="secondary"
+                    @label="With Promise (secondary)"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    type="secondary"
-                }}
-                    With Promise (secondary)
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @type="dark"
+                    @label="With Promise (dark)"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    type="dark"
-                }}
-                    With Promise (dark)
-                {{/button-spinner}}
-            </p>
-            <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    type="light"
-                }}
-                    With Promise (light)
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @type="light"
+                    @label="With Promise (light)"
+                />
             </p>
         </div>
         <div class="col">
             <p>
-                {{#button-spinner
-                    action=(action "clickWithRejectedPromise")
-                    size="lg"
-                    type="warning"
-                }}
+                <ButtonSpinner
+                    @action={{this.clickWithRejectedPromise}}
+                    @size="lg"
+                    @type="warning"
+                >
                     With Rejected Promise
-                {{/button-spinner}}
+                </ButtonSpinner>
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    showSuccess=false
-                    size="sm"
-                    type="info"
-                }}
-                    With Promise (no success)
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @showSuccess={{false}}
+                    @size="sm"
+                    @type="info"
+                    @label="With Promise (no success)"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithRejectedPromise")
-                    showError=false
-                    type="danger"
+                <ButtonSpinner
+                    @action={{this.clickWithRejectedPromise}}
+                    @showError={{false}}
+                    @type="danger"
                     outline=true
-                }}
-                    With Rejected Promise (no error)
-                {{/button-spinner}}
+                    @label="With Rejected Promise (no error)"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithoutPromise")
-                    size="lg"
-                    type="secondary"
-                }}
-                    Without Promise (lg)
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithoutPromise}}
+                    @size="lg"
+                    @type="secondary"
+                    @label="Without Promise (lg)"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithInstantRejectedPromise")
-                    type="danger"
-                }}
-                    Rejected Promise
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithInstantRejectedPromise}}
+                    @type="danger"
+                    @label="Rejected Promise"
+                />
             </p>
             <p>
-                {{#button-spinner
-                    action=(action "clickWithoutPromise")
-                    size="sm"
-                }}
-                    Without Promise (sm)
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithoutPromise}}
+                    @size="sm"
+                    @label="Without Promise (sm)"
+                />
             </p>
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    block=true
-                }}
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @blockLayout={{true}}
+                >
+                    <FaIcon @icon="angry" />
                     Block Button
-                {{/button-spinner}}
+                </ButtonSpinner>
             </p>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6">
             <p>
-                {{#button-spinner
-                    action=(action "clickWithPromise")
-                    type="primary"
-                    block=true
-                }}
-                    Block Button
-                {{/button-spinner}}
+                <ButtonSpinner
+                    @action={{this.clickWithPromise}}
+                    @type="primary"
+                    @blockLayout={{true}}
+                    @label="Block Button"
+                />
             </p>
         </div>
     </div>
 </div>
-{{outlet}}
