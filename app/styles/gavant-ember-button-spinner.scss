@@ -15,6 +15,13 @@
         right: 0;
     }
 
+    &-is-content-hidden {
+        .action-button-content,
+        .action-button-spinner-yielded-content {
+            visibility: hidden;
+        }
+    }
+
     &-loading {
         display: inline-block;
         height: 0;

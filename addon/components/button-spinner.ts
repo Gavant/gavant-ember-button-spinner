@@ -66,8 +66,18 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
         return this.args.successIcon || 'check-circle';
     }
 
-    get isContentReplaced() {
+    get isContentHidden() {
         return this.isSpinning || this.args.isSpinning || this.successShown;
+    }
+
+    /**
+     * Clean up when the component is about to be destroyed
+     */
+    willDestroy() {
+        super.willDestroy();
+        if(this.showResultTimer) {
+            cancel(this.showResultTimer);
+        }
     }
 
     /**
@@ -94,8 +104,9 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
             } catch(error) {
                 this.showErrorState(error);
             } finally {
-                //TODO need to worry about component lifecycle/being destroyed?
-                this.isSpinning = false;
+                if(!this.isDestroying && !this.isDestroyed) {
+                    this.isSpinning = false;
+                }
             }
         }
     }
@@ -105,13 +116,13 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
      * @param {any} resolvedValue the given action can resolve with literally anything, so we allow it here
      */
     showSuccessState(resolvedValue?: any) {
-        //TODO need to worry about lifecycle/component being destroyed?
-        if(this.showSuccess) {
+        if(this.showSuccess && !this.isDestroying && !this.isDestroyed) {
             this.successShown = true;
 
             this.showResultTimer = later(this, () => {
-                //TODO need to worry about lifecycle/component being destroyed?
-                this.successShown = false;
+                if(!this.isDestroying && !this.isDestroyed) {
+                    this.successShown = false;
+                }
             }, this.successStateDuration);
 
             //if the returned promise resolves to a function, invoke it when a result state finishes animating in
@@ -127,13 +138,13 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
      * @param {any} rejectedValue the given action can reject with literally anything, so we allow it here
      */
     showErrorState(rejectedValue?: any) {
-        //TODO need to worry about lifecycle/component being destroyed?
-        if(this.showError) {
+        if(this.showError && !this.isDestroying && !this.isDestroyed) {
             this.errorShown = true;
 
             this.showResultTimer = later(this, () => {
-                //TODO need to worry about lifecycle/component being destroyed?
-                this.errorShown = false;
+                if(!this.isDestroying && !this.isDestroyed) {
+                    this.errorShown = false;
+                }
             }, this.errorStateDuration);
 
             //if the returned promise rejected to a function, invoke it when a result state finishes animating in

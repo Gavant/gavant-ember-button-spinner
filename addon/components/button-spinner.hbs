@@ -1,5 +1,6 @@
 <Button
     class="action-button-spinner
+        {{~if this.isContentHidden " action-button-spinner-is-content-hidden"}}
         {{~if this.isSpinning " action-button-spinner-is-spinning"}}
         {{~if this.successShown " action-button-spinner-success-shown"}}
         {{~if this.errorShown " action-button-spinner-error"}}"
@@ -32,7 +33,7 @@
     <span class="action-button-spinner-yielded-content">
         {{yield}}
     </span>
-    {{#if this.isContentReplaced}}
+    {{#if this.isContentHidden}}
         <span class="action-button-spinner-ct">
             {{#if this.successShown}}
                 <div class="{{this.successClass}} {{this.successAnimationClass}}">

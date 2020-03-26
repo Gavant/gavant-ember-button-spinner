@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col">
             <p>
-                <Button @icon="user" @label="Icon Test" />
+                <Button @icon="user" @label="No Spinner" />
             </p>
             <p>
                 <ButtonSpinner
@@ -26,7 +26,8 @@
                     @isSpinning={{this.linkedIsSpinning}}
                     @type="success"
                     @outline={{true}}
-                    @label="With Promise (linked"
+                    @label="With Promise (linked)"
+                    class="custom-button-class"
                 />
             </p>
             <p>
