@@ -5,10 +5,8 @@ import { htmlSafe, capitalize } from '@ember/string';
 import { or } from '@ember/object/computed';
 import RSVP from 'rsvp';
 import BasicButton from '@gavant/ember-button-basic/components/button-basic';
-import layout from '../templates/components/button-spinner';
 
 export default BasicButton.extend({
-    layout,
     tagName: 'button',
     attributeBindings: ['button-type:type'],
     classNames: ['action-button-spinner'],
