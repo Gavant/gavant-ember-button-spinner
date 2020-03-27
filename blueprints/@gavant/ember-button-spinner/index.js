@@ -27,5 +27,11 @@ module.exports = {
             fs.writeFileSync(file, importStatement);
             this.ui.writeLine(`Created ${file}`);
         }
+
+        return this.addAddonsToProject({
+            packages: [
+                { name: '@fortawesome/ember-fontawesome', target: '^0.2.1' }
+            ]
+        });
     }
 };

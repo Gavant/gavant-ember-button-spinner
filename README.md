@@ -33,8 +33,45 @@ yarn add --dev @fortawesome/free-solid-svg-icons
 Usage
 ------------------------------------------------------------------------------
 
-@TODO [Longer description of how to use the addon in apps.]
+An example `<ButtonSpinner>` usage, with all available arguments used. Note that all arguments provided by the base `<Button>` component are supported too, but are not all listed here. See the addon's [usage documentation](https://github.com/Gavant/gavant-ember-button-basic#usage) for details. None of the component arguments are required.
 
+```hbs
+<ButtonSpinner
+    @action={{function}}
+    @label={{string}}
+    @isSpinning={{boolean}}
+    @showSuccess={{boolean}}
+    @showError={{boolean}}
+    @loadingClass={{string}}
+    @successClass={{string}}
+    @successAnimationClass={{string}}
+    @successIcon={{string}}
+    @successIconClass={{string}}
+/>
+
+{{!-- block form is supported too --}}
+<ButtonSpinner @action={{this.someAction}}>
+    Look ma, block content!
+</Button>
+```
+
+In order for the button to show the spinner animation, the function passed to `@action` must return a Promise (or be an `async` function). If the returned promise resolves or rejects with another function, the component will invoke that function as a callback when the button's success or error animation completes. This can be useful in situations where you want to execute some logic _after_ the animation is display to the user, such as transitioning to another page. For example:
+
+```js
+@action
+async saveAndTransition() {
+    await this.someAsyncSaveLogic();
+    //resolve with a function that will be executed once the success animation finishes
+    return () => this.transitionToRoute('somewhere.else');
+}
+```
+
+```hbs
+<ButtonSpinner
+    @action={{this.saveAndTransition}}
+    @label="Transitions after success!"
+/>
+```
 
 Contributing
 ------------------------------------------------------------------------------
