@@ -95,9 +95,9 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
                 cancel(this.showResultTimer);
             }
 
-            //coerce the returned value into a Promise to ensure it has a `finally` block
             try {
                 if(this.args.action) {
+                    //coerce the returned value into a Promise to ensure it has a `finally` block
                     const result = await resolve(this.args.action(event));
                     this.showSuccessState(result);
                 }
