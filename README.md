@@ -55,7 +55,7 @@ An example `<ButtonSpinner>` usage, with all available arguments used. Note that
 </Button>
 ```
 
-In order for the button to show the spinner animation, the function passed to `@action` must return a Promise (or be an `async` function). If the returned promise resolves or rejects with another function, the component will invoke that function as a callback when the button's success or error animation completes. This can be useful in situations where you want to execute some logic _after_ the animation is display to the user, such as transitioning to another page. For example:
+In order for the button to show the spinner animation, the function passed to `@action` must return a Promise (or be an `async` function). If the returned promise resolves or rejects with another function, the component will invoke that function as a callback when the button's success or error animation completes. This can be useful in situations where you want to execute some logic _after_ the animation is displayed to the user, such as transitioning to another page. For example:
 
 ```js
 @action
