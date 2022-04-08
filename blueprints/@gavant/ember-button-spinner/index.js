@@ -6,9 +6,9 @@ const fs = require('fs');
 
 module.exports = {
     normalizeEntityName() {
-    // this prevents an error when the entityName is
-    // not specified (since that doesn't actually matter
-    // to us
+        // this prevents an error when the entityName is
+        // not specified (since that doesn't actually matter
+        // to us
     },
 
     afterInstall() {
@@ -22,8 +22,9 @@ module.exports = {
         }
         if (fs.existsSync(file)) {
             this.ui.writeLine(`Added import statement to ${file}`);
-            return this.insertIntoFile(file, importStatement, {})
-                .then(() => this.installFontAwesome());
+            return this.insertIntoFile(file, importStatement, {}).then(() =>
+                this.installFontAwesome()
+            );
         } else {
             fs.writeFileSync(file, importStatement);
             this.ui.writeLine(`Created ${file}`);
@@ -34,8 +35,8 @@ module.exports = {
     installFontAwesome() {
         return this.addAddonsToProject({
             packages: [
-                { name: '@fortawesome/ember-fontawesome', target: '^0.2.1' }
-            ]
+                { name: '@fortawesome/ember-fontawesome', target: '^0.2.1' },
+            ],
         });
-    }
+    },
 };

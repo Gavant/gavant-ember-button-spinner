@@ -34,18 +34,26 @@ export default class ApplicationController extends Controller {
     @action
     clickWithPromise() {
         return new Promise((resolve) => {
-            later(this, () => {
-                resolve(this.onSuccessAnimateIn());
-            }, 2000);
+            later(
+                this,
+                () => {
+                    resolve(this.onSuccessAnimateIn());
+                },
+                2000
+            );
         });
     }
 
     @action
     clickWithRejectedPromise() {
         return new Promise((resolve, reject) => {
-            later(this, () => {
-                reject(this.onErrorAnimateIn());
-            }, 2000);
+            later(
+                this,
+                () => {
+                    reject(this.onErrorAnimateIn());
+                },
+                2000
+            );
         });
     }
 
@@ -59,4 +67,3 @@ export default class ApplicationController extends Controller {
         return reject();
     }
 }
-
