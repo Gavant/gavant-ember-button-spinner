@@ -1,11 +1,13 @@
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { isNone, typeOf } from '@ember/utils';
 import { cancel, later } from '@ember/runloop';
 import { EmberRunTimer } from '@ember/runloop/types';
+import { isNone, typeOf } from '@ember/utils';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+
+import { ButtonArgs } from '@gavant/ember-button-basic/components/button/button';
+
 import { resolve } from 'rsvp';
-import { ButtonArgs } from '@gavant/ember-button-basic/components/button';
 
 export interface ButtonSpinnerArgs extends ButtonArgs {
     isSpinning?: boolean;

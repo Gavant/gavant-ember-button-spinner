@@ -1,9 +1,9 @@
 <Button
-    class="action-button-spinner
+    class='action-button-spinner
         {{~if this.isContentHidden " action-button-spinner-is-content-hidden"}}
         {{~if this.isSpinning " action-button-spinner-is-spinning"}}
         {{~if this.successShown " action-button-spinner-success-shown"}}
-        {{~if this.errorShown " action-button-spinner-error"}}"
+        {{~if this.errorShown " action-button-spinner-error"}}'
     @action={{this.onClick}}
     @preventDefault={{this.preventDefault}}
     @buttonType={{this.buttonType}}
@@ -30,21 +30,23 @@
     @stopPropagation={{@stopPropagation}}
     ...attributes
 >
-    <span class="action-button-spinner-yielded-content">
+    <span class='action-button-spinner-yielded-content'>
         {{yield}}
     </span>
     {{#if this.isContentHidden}}
-        <span class="action-button-spinner-ct">
+        <span class='action-button-spinner-ct'>
             {{#if this.successShown}}
-                <div class="{{this.successClass}} {{this.successAnimationClass}}">
+                <div
+                    class='{{this.successClass}} {{this.successAnimationClass}}'
+                >
                     <FaIcon
                         @icon={{this.successIcon}}
                         @prefix={{@iconPrefix}}
-                        class="action-button-icon {{@successIconClass}}"
+                        class='action-button-icon {{@successIconClass}}'
                     />
                 </div>
             {{else}}
-                <span class="{{this.loadingClass}} active"></span>
+                <span class='{{this.loadingClass}} active'></span>
             {{/if}}
         </span>
     {{/if}}

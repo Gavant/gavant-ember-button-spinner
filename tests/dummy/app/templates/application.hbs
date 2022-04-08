@@ -1,21 +1,21 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="my-4">@gavant/ember-button-spinner</h2>
+<div class='container'>
+    <div class='row'>
+        <div class='col-12'>
+            <h2 class='my-4'>@gavant/ember-button-spinner</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
+    <div class='row'>
+        <div class='col'>
             <p>
-                <Button @icon="user" @label="No Spinner" />
+                <Button @icon='user' @label='No Spinner' />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithLinkedSpinning}}
                     @isSpinning={{this.linkedIsSpinning}}
-                    @size="lg"
-                    @type="primary"
-                    @icon="user"
+                    @size='lg'
+                    @type='primary'
+                    @icon='user'
                 >
                     With Promise (linked)
                 </ButtonSpinner>
@@ -24,16 +24,16 @@
                 <ButtonSpinner
                     @action={{this.clickWithLinkedSpinning}}
                     @isSpinning={{this.linkedIsSpinning}}
-                    @type="success"
+                    @type='success'
                     @outline={{true}}
-                    @label="With Promise (linked)"
-                    class="custom-button-class"
+                    @label='With Promise (linked)'
+                    class='custom-button-class'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
-                    @type="success"
+                    @type='success'
                 >
                     With Promise (success)
                 </ButtonSpinner>
@@ -42,38 +42,38 @@
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
-                    @type="info"
-                    @label="With Promise (info)"
+                    @type='info'
+                    @label='With Promise (info)'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
-                    @type="secondary"
-                    @label="With Promise (secondary)"
+                    @type='secondary'
+                    @label='With Promise (secondary)'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
-                    @type="dark"
-                    @label="With Promise (dark)"
+                    @type='dark'
+                    @label='With Promise (dark)'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
-                    @type="light"
-                    @label="With Promise (light)"
+                    @type='light'
+                    @label='With Promise (light)'
                 />
             </p>
         </div>
-        <div class="col">
+        <div class='col'>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithRejectedPromise}}
-                    @size="lg"
-                    @type="warning"
+                    @size='lg'
+                    @type='warning'
                 >
                     With Rejected Promise
                 </ButtonSpinner>
@@ -82,63 +82,63 @@
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
                     @showSuccess={{false}}
-                    @size="sm"
-                    @type="info"
-                    @label="With Promise (no success)"
+                    @size='sm'
+                    @type='info'
+                    @label='With Promise (no success)'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithRejectedPromise}}
                     @showError={{false}}
-                    @type="danger"
-                    outline=true
-                    @label="With Rejected Promise (no error)"
+                    @type='danger'
+                    outline={{true}}
+                    @label='With Rejected Promise (no error)'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithoutPromise}}
-                    @size="lg"
-                    @type="secondary"
-                    @label="Without Promise (lg)"
+                    @size='lg'
+                    @type='secondary'
+                    @label='Without Promise (lg)'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithInstantRejectedPromise}}
-                    @type="danger"
-                    @label="Rejected Promise"
+                    @type='danger'
+                    @label='Rejected Promise'
                 />
             </p>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithoutPromise}}
-                    @size="sm"
-                    @label="Without Promise (sm)"
+                    @size='sm'
+                    @label='Without Promise (sm)'
                 />
             </p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
+    <div class='row'>
+        <div class='col-lg-6'>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
                     @blockLayout={{true}}
                 >
-                    <FaIcon @icon="angry" />
+                    <FaIcon @icon='angry' />
                     Block Button
                 </ButtonSpinner>
             </p>
         </div>
-        <div class="col-lg-6">
+        <div class='col-lg-6'>
             <p>
                 <ButtonSpinner
                     @action={{this.clickWithPromise}}
-                    @type="primary"
+                    @type='primary'
                     @blockLayout={{true}}
-                    @label="Block Button"
+                    @label='Block Button'
                 />
             </p>
         </div>
