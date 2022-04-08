@@ -1,11 +1,13 @@
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { isNone, typeOf } from '@ember/utils';
 import { cancel, later } from '@ember/runloop';
 import { EmberRunTimer } from '@ember/runloop/types';
+import { isNone, typeOf } from '@ember/utils';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+
+import { ButtonArgs } from '@gavant/ember-button-basic/components/button/button';
+
 import { resolve } from 'rsvp';
-import { ButtonArgs } from '@gavant/ember-button-basic/components/button';
 
 export interface ButtonSpinnerArgs extends ButtonArgs {
     isSpinning?: boolean;
@@ -39,7 +41,9 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
     get preventDefault() {
         //default the button action to prevent the default behavior, as spinner buttons
         //are usually used for form submission
-        return !isNone(this.args.preventDefault) ? this.args.preventDefault : true;
+        return !isNone(this.args.preventDefault)
+            ? this.args.preventDefault
+            : true;
     }
 
     get showSuccess() {
@@ -59,7 +63,9 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
     }
 
     get successAnimationClass() {
-        return this.args.successAnimationClass || 'action-button-spinner-flip-in';
+        return (
+            this.args.successAnimationClass || 'action-button-spinner-flip-in'
+        );
     }
 
     get successIcon() {
@@ -75,7 +81,7 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
      */
     willDestroy() {
         super.willDestroy();
-        if(this.showResultTimer) {
+        if (this.showResultTimer) {
             cancel(this.showResultTimer);
         }
     }
@@ -91,20 +97,20 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
             this.successShown = false;
             this.errorShown = false;
 
-            if(this.showResultTimer) {
+            if (this.showResultTimer) {
                 cancel(this.showResultTimer);
             }
 
             try {
-                if(this.args.action) {
+                if (this.args.action) {
                     //coerce the returned value into a Promise to ensure it has a `finally` block
                     const result = await resolve(this.args.action(event));
                     this.showSuccessState(result);
                 }
-            } catch(error) {
+            } catch (error) {
                 this.showErrorState(error);
             } finally {
-                if(!this.isDestroying && !this.isDestroyed) {
+                if (!this.isDestroying && !this.isDestroyed) {
                     this.isSpinning = false;
                 }
             }
@@ -116,18 +122,22 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
      * @param {any} resolvedValue the given action can resolve with literally anything, so we allow it here
      */
     showSuccessState(resolvedValue?: any) {
-        if(this.showSuccess && !this.isDestroying && !this.isDestroyed) {
+        if (this.showSuccess && !this.isDestroying && !this.isDestroyed) {
             this.successShown = true;
 
-            this.showResultTimer = later(this, () => {
-                if(!this.isDestroying && !this.isDestroyed) {
-                    this.successShown = false;
-                }
-            }, this.successStateDuration);
+            this.showResultTimer = later(
+                this,
+                () => {
+                    if (!this.isDestroying && !this.isDestroyed) {
+                        this.successShown = false;
+                    }
+                },
+                this.successStateDuration
+            );
 
             //if the returned promise resolves to a function, invoke it when a result state finishes animating in
             //e.g. so the parent controller can do something custom once the success state is shown
-            if(typeOf(resolvedValue) === 'function') {
+            if (typeOf(resolvedValue) === 'function') {
                 later(this, resolvedValue, this.successAnimateInDuration);
             }
         }
@@ -138,21 +148,24 @@ export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
      * @param {any} rejectedValue the given action can reject with literally anything, so we allow it here
      */
     showErrorState(rejectedValue?: any) {
-        if(this.showError && !this.isDestroying && !this.isDestroyed) {
+        if (this.showError && !this.isDestroying && !this.isDestroyed) {
             this.errorShown = true;
 
-            this.showResultTimer = later(this, () => {
-                if(!this.isDestroying && !this.isDestroyed) {
-                    this.errorShown = false;
-                }
-            }, this.errorStateDuration);
+            this.showResultTimer = later(
+                this,
+                () => {
+                    if (!this.isDestroying && !this.isDestroyed) {
+                        this.errorShown = false;
+                    }
+                },
+                this.errorStateDuration
+            );
 
             //if the returned promise rejected to a function, invoke it when a result state finishes animating in
             //e.g. so the parent controller can do something custom when the error state is shown
-            if(typeOf(rejectedValue) === 'function') {
+            if (typeOf(rejectedValue) === 'function') {
                 later(this, rejectedValue, this.errorAnimateInDuration);
             }
         }
     }
 }
-

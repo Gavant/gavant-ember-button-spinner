@@ -12,8 +12,8 @@
 # misc
 /coverage/
 !.*
-.*/
 .eslintcache
+.lint-todo/
 
 # ember-try
 /.node_modules.ember-try/
