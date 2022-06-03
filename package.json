@@ -4,6 +4,9 @@
       "addon",
       "test-app"
     ],
+    "scripts": {
+      "build": "yarn workspace @gavant/ember-button-spinner build"
+    },
     "volta": {
       "node": "14.19.1"
     }
