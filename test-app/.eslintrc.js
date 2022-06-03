@@ -9,10 +9,10 @@ module.exports = {
         'plugin:ember/recommended',
         'plugin:@typescript-eslint/recommended',
         'prettier',
-        'plugin:prettier/recommended',
+        'plugin:prettier/recommended'
     ],
     env: {
-        browser: true,
+        browser: true
     },
 
     rules: {
@@ -22,7 +22,7 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off'
     },
     overrides: [
         // node files
@@ -36,22 +36,22 @@ module.exports = {
                 './testem.js',
                 './blueprints/*/index.js',
                 './config/**/*.js',
-                './tests/dummy/config/**/*.js',
+                './tests/dummy/config/**/*.js'
             ],
             parserOptions: {
-                sourceType: 'script',
+                sourceType: 'script'
             },
             env: {
                 browser: false,
-                node: true,
+                node: true
             },
             plugins: ['node'],
-            extends: ['plugin:node/recommended'],
+            extends: ['plugin:node/recommended']
         },
         {
             // test files
             files: ['tests/**/*-test.{js,ts}'],
-            extends: ['plugin:qunit/recommended'],
-        },
-    ],
+            extends: ['plugin:qunit/recommended']
+        }
+    ]
 };

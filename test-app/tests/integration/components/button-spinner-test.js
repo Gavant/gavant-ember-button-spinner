@@ -21,9 +21,6 @@ module('Integration | Component | button-spinner', function (hooks) {
       {{/button-spinner}}
     `);
 
-        assert.strictEqual(
-            this.element.textContent.trim(),
-            'template block text'
-        );
+        assert.strictEqual(this.element.textContent.trim(), 'template block text');
     });
 });
