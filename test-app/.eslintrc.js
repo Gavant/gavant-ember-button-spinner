@@ -14,15 +14,14 @@ module.exports = {
     env: {
         browser: true
     },
-
     rules: {
         'ember/no-jquery': 'error',
+
         '@typescript-eslint/no-inferrable-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-empty-function': 'off',
-        '@typescript-eslint/no-empty-interface': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off'
+        '@typescript-eslint/no-empty-interface': 'off'
     },
     overrides: [
         // node files
@@ -36,7 +35,7 @@ module.exports = {
                 './testem.js',
                 './blueprints/*/index.js',
                 './config/**/*.js',
-                './tests/dummy/config/**/*.js'
+                './tests/test-app/config/**/*.js'
             ],
             parserOptions: {
                 sourceType: 'script'
@@ -46,7 +45,12 @@ module.exports = {
                 node: true
             },
             plugins: ['node'],
-            extends: ['plugin:node/recommended']
+            extends: ['plugin:node/recommended'],
+            rules: {
+                // this can be removed once the following is fixed
+                // https://github.com/mysticatea/eslint-plugin-node/issues/77
+                'node/no-unpublished-require': 'off'
+            }
         },
         {
             // test files

@@ -1,9 +1,12 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-
+const packageJson = require('./package');
 module.exports = function (defaults) {
     let app = new EmberApp(defaults, {
+        autoImport: {
+            watchDependencies: Object.keys(packageJson.dependencies)
+        },
         // Add options here
         sassOptions: {
             includePaths: ['../node_modules/@gavant/ember-button-spinner/dist/styles']
