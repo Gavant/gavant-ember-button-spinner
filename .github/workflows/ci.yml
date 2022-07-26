@@ -19,11 +19,10 @@ jobs:
             - uses: actions/checkout@v2
             - uses: volta-cli/action@v1
               with:
-                node-version: 16.x
-                yarn-version: 1.x
+                  node-version: 16.x
+                  yarn-version: 1.x
             - name: Install Dependencies
               run: yarn install --frozen-lockfile --non-interactive
-            - run: yarn build
             - name: Lint Addon
               run: yarn workspace @gavant/ember-button-spinner run lint
             - name: Lint Test App
@@ -38,11 +37,10 @@ jobs:
             - uses: actions/checkout@v2
             - uses: volta-cli/action@v1
               with:
-                node-version: 16.x
-                yarn-version: 1.x
+                  node-version: 16.x
+                  yarn-version: 1.x
             - name: Install Dependencies
               run: yarn install --no-lockfile  --non-interactive
-            - run: yarn build
             - name: Run Tests
               run: yarn workspace test-app run test
 
@@ -67,12 +65,11 @@ jobs:
             - uses: actions/checkout@v2
             - uses: volta-cli/action@v1
               with:
-                node-version: 16.x
-                yarn-version: 1.x
+                  node-version: 16.x
+                  yarn-version: 1.x
             - name: Install Dependencies
               run: yarn install --frozen-lockfile --non-interactive
-            - run: yarn build
             - name: Test
               env:
-                EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }}
+                  EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }}
               run: yarn workspace test-app run ember try:one $EMBER_TRY_SCENARIO

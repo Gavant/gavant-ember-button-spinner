@@ -1,0 +1,19 @@
+{
+    "extends": "@tsconfig/ember/tsconfig.json",
+    "compilerOptions": {
+         // So that the test app's type checking doesn't break when we change types
+       "paths": {
+            "*": ["./types/*"]
+       }
+    },
+    "include": [
+        "src/**/*",
+        "types/**/*"
+    ],
+    "glint": {
+        "environment": "ember-loose",
+        "transform": {
+            "include": ["src/**"]
+        }
+    }
+}
