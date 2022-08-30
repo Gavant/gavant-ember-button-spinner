@@ -1,3 +1,5 @@
+## v2.1.0 (2022-08-30)
+
 ### Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
