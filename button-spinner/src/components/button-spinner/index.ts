@@ -5,10 +5,11 @@ import { isNone, typeOf } from '@ember/utils';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { ButtonArgs } from '@gavant/ember-button-basic/components/button/button';
+import { ButtonArgs } from '@gavant/ember-button-basic/components/button';
 
 import { resolve } from 'rsvp';
 
+import type { IconName } from '@fortawesome/fontawesome-svg-core';
 export interface ButtonSpinnerArgs extends ButtonArgs {
     isSpinning?: boolean;
     showSuccess?: boolean;
@@ -16,12 +17,20 @@ export interface ButtonSpinnerArgs extends ButtonArgs {
     loadingClass?: string;
     successClass?: string;
     successAnimationClass?: string;
-    successIcon?: string;
+    successIcon?: IconName;
     successIconClass?: string;
     action?: (event: Event) => Promise<any>;
 }
 
-export default class ButtonSpinner extends Component<ButtonSpinnerArgs> {
+export interface ButtonSpinnerSignature {
+    Args: ButtonSpinnerArgs;
+    Element: HTMLButtonElement;
+    Blocks: {
+        default: [];
+    };
+}
+
+export default class ButtonSpinner extends Component<ButtonSpinnerSignature> {
     @tracked isSpinning: boolean = false;
     @tracked successShown: boolean = false;
     @tracked errorShown: boolean = false;
