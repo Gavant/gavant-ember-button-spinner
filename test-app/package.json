@@ -1,6 +1,6 @@
 {
     "name": "test-app",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "The default blueprint for ember-cli addons.",
     "keywords": [],
     "repository": "https://github.com/Gavant/gavant-ember-button-spinner",
@@ -28,7 +28,7 @@
         "postpack": "ember ts:clean"
     },
     "dependencies": {
-        "@gavant/ember-button-spinner": "2.1.0"
+        "@gavant/ember-button-spinner": "2.1.1"
     },
     "devDependencies": {
         "@babel/helper-get-function-arity": "^7.16.7",

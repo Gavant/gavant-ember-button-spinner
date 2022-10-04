@@ -1,6 +1,6 @@
 {
   "name": "@gavant/ember-button-spinner",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Spinner button that handles promises",
   "keywords": [
     "ember-addon"
